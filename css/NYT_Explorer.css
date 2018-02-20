@@ -1,1 +1,15 @@
+#section1{
+	background: linear-gradient(black,grey);
+	color:lightgrey;
+}
 
+#section2{
+	display: flex;
+	justify-content: center;
+	text-align: center;
+}
+h1 {
+	display: flex;
+	justify-content: center;
+	text-align: center;
+}
