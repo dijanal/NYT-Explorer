@@ -1,7 +1,32 @@
-#section1{
-	background: linear-gradient(black,grey);
-	color:lightgrey;
-}
+/*body
+{	
+background: url(../img/download.jpg) no-repeat center center fixed;	
+-webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}*/
+
+/*.page{
+  display: flex;
+  font-size: 0;
+  flex-wrap: nowrap;
+  height: 100%;
+  width: 100%;
+  border: 1px solid black; 
+}*/
+
+/*.results{
+  display: inline-block;
+  background: blue;
+  margin: 10px 0 0 10px;
+  flex-grow: 1;
+  height: 100px;
+  width: 25%;
+}*/
+
+
+
 
 #section2{
 	display: flex;
@@ -12,4 +37,23 @@ h1 {
 	display: flex;
 	justify-content: center;
 	text-align: center;
+}
+
+.page{
+	display: flex;
+}
+
+.results-link:hover{
+background-color: #bfbfbf
+}
+
+.results{
+	float:left;
+	width:70%;
+}
+
+.details{
+	float:left;
+	
+	width:30%;
 }

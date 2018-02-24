@@ -1,18 +1,17 @@
-function ShowUrl(props){
-
-  return(  
-
-      <div><a href={props.web_url}>{props.web_url}</a></div> 
-           
-   )
-}
-
 class App extends React.Component {
 
   constructor(props){
     super(props)
-    this.state={data:[]}
+    this.state={
+      data:[],
+      details: {
+        title: '',
+        description: '',
+        web_url: ''
+      }
+    }
     this.setData = this.setData.bind(this);
+    this.setDetails = this.setDetails.bind(this);
     this.refresh=this.refresh.bind(this);
   }
   
@@ -23,6 +22,10 @@ class App extends React.Component {
       data.push(doc)
     }
     this.setState({'data': data });  
+  }
+
+  setDetails(details) {
+    this.setState({details});
   }
 
   refresh(){
@@ -40,18 +43,27 @@ class App extends React.Component {
  render() {      
    const elements = this.state.data;
    console.log(elements);
-   const urls =
-    <div>
-       {
-      elements.map(
-       (element) => <LinkPreview
-       key={element._id}
-       web_url={element.web_url}
-       />
-      )
-    }
-    </div>
-    return urls;
+    
+    return (
+      <div>
+        <div className='results'>
+           {
+              elements.map(
+               (element) => <LinkPreview
+                 key={element._id}
+                 handleOnClick={this.setDetails}
+                 web_url={element.web_url}
+               />
+              )
+            }
+        </div>
+          <div className="details">
+            <div>{this.state.details.title}</div>
+            <div>{this.state.details.description}</div>
+            <div>{this.state.details.web_url}</div>
+          </div>
+      </div>
+    );
   }
 }
 
@@ -60,43 +72,61 @@ class LinkPreview extends React.Component{
 
   constructor(props){
     super(props)
-    this.state={result:[]}
+    this.state={
+      result:[]
+    }
     this.setData=this.setData.bind(this)
-
-  }
+    this.setDetails=this.setDetails.bind(this)
+      }
 
   setData(result){
     this.setState({result: result})
   }
+  setDetails(){
+    const {title, description, web_url} = this.state.result;
+
+    const details = {
+      title: title,
+      description: description,
+      web_url: web_url
+    }
+
+    this.props.handleOnClick(details)
+  }
 
   componentDidMount(){
     $.ajax({
-      url:"http://api.linkpreview.net/?key=5a8c6323b4866f01b8bf3c88dab0d56d3b36c16fa90dd&q="+this.props.web_url,
+      url:"https://api.linkpreview.net/?key=5a8c6323b4866f01b8bf3c88dab0d56d3b36c16fa90dd&q="+this.props.web_url,
       success:this.setData
     })
   }
   render(){
-    const answers=this.state.result
-    console.log(answers)
+    const details=this.state.result
+    console.log(details)
 
     return (
-      <div>
+      <div className='page'>
+      <div className='results-link' onClick={this.setDetails.bind(this)}>
         <span>
-          <img style={{width: '150px'}} src={this.state.result.image}/>
+         <a href={this.props.web_url} target='_blank'> <img style={{width: '150px'}} src={details.image}/></a>
         </span>
         <span>
-          <div style={{display: 'inline-block'}}><a href={this.props.web_url}>{this.state.result.title}</a></div>
-          <div>{this.state.result.description}</div>
+         <div style={{display: 'inline-block'}}><a href={this.props.web_url} target='_blank'>{details.title}</a></div>
+          <div>{details.description}</div>
         </span>
       </div>
+      </div>
+      
     )
   }
 
 }
 
+
 function search(){
+
 app.refresh()
 }
 
 const root = document.getElementById('root');
-var app = ReactDOM.render(<App />, root);
+var app = ReactDOM.render(<App />, root); 
