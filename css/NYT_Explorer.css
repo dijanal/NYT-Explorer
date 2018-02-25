@@ -1,59 +1,131 @@
 /*body
-{	
-background: url(../img/download.jpg) no-repeat center center fixed;	
+{ 
+background: linear-gradient(black,#2C2828) no-repeat center center fixed; 
 -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
 }*/
 
-/*.page{
-  display: flex;
-  font-size: 0;
-  flex-wrap: nowrap;
-  height: 100%;
-  width: 100%;
-  border: 1px solid black; 
-}*/
-
-/*.results{
-  display: inline-block;
-  background: blue;
-  margin: 10px 0 0 10px;
-  flex-grow: 1;
-  height: 100px;
-  width: 25%;
-}*/
-
-
-
 
 #section2{
-	display: flex;
-	justify-content: center;
-	text-align: center;
+  display: flex;
+  justify-content: center;
+  text-align: center;
 }
 h1 {
-	display: flex;
-	justify-content: center;
-	text-align: center;
+  display: flex;
+  justify-content: center;
+  text-align: center;
 }
 
+
+@media screen 
+  and (min-device-width: 1200px) 
+  and (max-device-width: 1600px) 
+  and (-webkit-min-device-pixel-ratio: 1) { 
+
 .page{
-	display: flex;
+  flex:1;
+  padding: 10px 0 0 10px;
+  width:25%;
+
+}
+
+.results-link:hover{
+background-color: #bfbfbf;
+}
+.results-link{
+    background-color: #E3D6D6;
+
+}
+
+.results{
+  float:left;
+  width:70%;
+  display: flex;
+  flex-wrap: wrap;
+
+
+}
+
+.details{
+  float:left;
+  
+  width:30%;
+}
+}
+
+@media only screen 
+  and (min-device-width: 768px) 
+  and (max-device-width: 1024px) 
+  and (-webkit-min-device-pixel-ratio: 1) {
+
+.page{
+  flex:1;
+  
+  
+  width:50%;
+
+}
+
+.results-link:hover{
+  background-color: #bfbfbf
+
+
+
+}
+
+.results{
+  float:left;
+  width:70%;
+  display: flex;
+  flex-wrap: wrap;
+
+
+}
+
+.details{
+  float:left;
+  
+  width:30%;
+}
+
+}
+
+@media screen 
+  and (device-width: 320px) 
+  and (device-height: 640px) 
+  and (-webkit-device-pixel-ratio: 2) {
+
+.page{
+  flex:1;
+  
+  
+  width:100%;
+
 }
 
 .results-link:hover{
 background-color: #bfbfbf
+
+
+
 }
 
 .results{
-	float:left;
-	width:70%;
+  float:left;
+  width:70%;
+  display: flex;
+  flex-wrap: wrap;
+
+
 }
 
 .details{
-	float:left;
-	
-	width:30%;
+  float:left;
+  
+  width:30%;
+}
+
 }

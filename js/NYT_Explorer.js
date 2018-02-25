@@ -4,11 +4,7 @@ class App extends React.Component {
     super(props)
     this.state={
       data:[],
-      details: {
-        title: '',
-        description: '',
-        web_url: ''
-      }
+      details: {}
     }
     this.setData = this.setData.bind(this);
     this.setDetails = this.setDetails.bind(this);
@@ -40,8 +36,9 @@ class App extends React.Component {
     })
   }
 
- render() {      
+ render() {  
    const elements = this.state.data;
+   const link_details=this.state.details
    console.log(elements);
     
     return (
@@ -58,9 +55,9 @@ class App extends React.Component {
             }
         </div>
           <div className="details">
-            <div>{this.state.details.title}</div>
-            <div>{this.state.details.description}</div>
-            <div>{this.state.details.web_url}</div>
+            <div>{link_details.title}</div>
+            <div>{link_details.description}</div>
+            <div>{this.props.web_url}</div>
           </div>
       </div>
     );
@@ -89,6 +86,7 @@ class LinkPreview extends React.Component{
       title: title,
       description: description,
       web_url: web_url
+
     }
 
     this.props.handleOnClick(details)
@@ -96,7 +94,7 @@ class LinkPreview extends React.Component{
 
   componentDidMount(){
     $.ajax({
-      url:"https://api.linkpreview.net/?key=5a8c6323b4866f01b8bf3c88dab0d56d3b36c16fa90dd&q="+this.props.web_url,
+      url:"http://api.linkpreview.net/?key=123456&q=https://www.google.com",
       success:this.setData
     })
   }
@@ -106,12 +104,12 @@ class LinkPreview extends React.Component{
 
     return (
       <div className='page'>
-      <div className='results-link' onClick={this.setDetails.bind(this)}>
+      <div className='results-link' onClick={this.setDetails.bind(this)} >
         <span>
          <a href={this.props.web_url} target='_blank'> <img style={{width: '150px'}} src={details.image}/></a>
         </span>
         <span>
-         <div style={{display: 'inline-block'}}><a href={this.props.web_url} target='_blank'>{details.title}</a></div>
+         <div ><a href={this.props.web_url} target='_blank'>{details.title}</a></div>
           <div>{details.description}</div>
         </span>
       </div>
