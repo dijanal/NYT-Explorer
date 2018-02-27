@@ -26,8 +26,6 @@ h1 {
   and (-webkit-min-device-pixel-ratio: 1) { 
 
 .page{
-  flex:1;
-  padding: 10px 0 0 10px;
   width:25%;
 
 }
@@ -35,23 +33,17 @@ h1 {
 .results-link:hover{
 background-color: #bfbfbf;
 }
-.results-link{
-    background-color: #E3D6D6;
 
-}
 
 .results{
   float:left;
   width:70%;
   display: flex;
   flex-wrap: wrap;
-
-
 }
 
 .details{
   float:left;
-  
   width:30%;
 }
 }
@@ -62,19 +54,14 @@ background-color: #bfbfbf;
   and (-webkit-min-device-pixel-ratio: 1) {
 
 .page{
-  flex:1;
-  
-  
-  width:50%;
+  width:40%;
 
 }
 
 .results-link:hover{
   background-color: #bfbfbf
-
-
-
 }
+
 
 .results{
   float:left;
@@ -87,45 +74,41 @@ background-color: #bfbfbf;
 
 .details{
   float:left;
-  
+  margin-bottom: 10px;
   width:30%;
 }
 
 }
 
-@media screen 
-  and (device-width: 320px) 
-  and (device-height: 640px) 
-  and (-webkit-device-pixel-ratio: 2) {
+@media only screen 
+  and (min-device-width: 375px) 
+  and (max-device-width: 667px) 
+  and (-webkit-min-device-pixel-ratio: 2) { 
 
 .page{
-  flex:1;
   
-  
-  width:100%;
+  width:70%;
 
 }
 
 .results-link:hover{
 background-color: #bfbfbf
-
-
-
 }
+
+
 
 .results{
   float:left;
   width:70%;
   display: flex;
   flex-wrap: wrap;
-
-
 }
 
 .details{
-  float:left;
-  
+  float:left; 
   width:30%;
+
 }
 
 }
+

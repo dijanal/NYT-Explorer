@@ -57,7 +57,7 @@ class App extends React.Component {
           <div className="details">
             <div>{link_details.title}</div>
             <div>{link_details.description}</div>
-            <div>{this.props.web_url}</div>
+            <div><a href={link_details.url}>{link_details.url}</a></div>
           </div>
       </div>
     );
@@ -78,14 +78,15 @@ class LinkPreview extends React.Component{
 
   setData(result){
     this.setState({result: result})
+
   }
   setDetails(){
-    const {title, description, web_url} = this.state.result;
+    const {title, description, url} = this.state.result;
 
     const details = {
       title: title,
       description: description,
-      web_url: web_url
+      url: url
 
     }
 
@@ -109,8 +110,9 @@ class LinkPreview extends React.Component{
          <a href={this.props.web_url} target='_blank'> <img style={{width: '150px'}} src={details.image}/></a>
         </span>
         <span>
-         <div ><a href={this.props.web_url} target='_blank'>{details.title}</a></div>
+         <div ><a href={details.url} target='_blank'>{details.title}</a></div>
           <div>{details.description}</div>
+          
         </span>
       </div>
       </div>
