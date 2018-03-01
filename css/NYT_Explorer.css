@@ -1,14 +1,11 @@
-/*body
-{ 
-background: linear-gradient(black,#2C2828) no-repeat center center fixed; 
--webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-}*/
 body {
-    background: radial-gradient(#626D71,#D2C5C5) no-repeat center center fixed;
-    height: auto;
+  background: radial-gradient(#626D71,#D2C5C5) no-repeat center center fixed;
+  height: auto;
+  font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+}
+
+body, html { 
+  overflow-x:hidden; 
 }
 
 #section1 {
@@ -17,6 +14,8 @@ body {
   text-align: center;
   background: linear-gradient(#B38867,#DDBC95);
   color:#474f52;
+  font-family: "Arial Black", Gadget, sans-serif  
+
 }
 
 #section2 {
@@ -31,6 +30,7 @@ body {
 #amount{
   margin-bottom: 10px;
 }
+
 
 
 @media screen 
@@ -61,10 +61,15 @@ body {
   }
 }
 
+.title{
+  font-weight: bold;
+}
 
 @media (min-width: 768px) and (max-width: 1024px) {
+
+
 .page{
-  width:40%;
+  width:35%;
 }
 
 .page:hover{

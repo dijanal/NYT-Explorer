@@ -42,9 +42,9 @@ class App extends React.Component {
     //set number of all articles
 
     var root1=document.getElementById('amount')
-    const array1=<p>{this.state.data.title}</p>
-    var array='Number of articles:  ' + array1
-    root1.innerHTML=array
+    const amount1=<p>{this.state.data.title}</p>
+    var amount='Number of articles:  ' + amount1
+    root1.innerHTML=amount
 
     $.ajax({
        url: "https://api.nytimes.com/svc/archive/v1/"+year+"/"+month2+".json",
@@ -72,7 +72,7 @@ class App extends React.Component {
             }
         </div>
           <div className="details">
-            <div>{link_details.title}</div>
+            <div >{link_details.title}</div>
             <div><a href={link_details.url} target="_blank">{link_details.url}</a></div>
           </div>
       </div>
@@ -111,7 +111,7 @@ class LinkPreview extends React.Component{
 
   componentDidMount(){
     $.ajax({
-      url:"https://api.linkpreview.net/?key=5a8c6323b4866f01b8bf3c88dab0d56d3b36c16fa90dd&q="+this.props.web_url,
+      url:"https://api.linkpreview.net/?key=123456&q=https://www.google.com",
       success:this.setData
     })
   }
@@ -126,7 +126,7 @@ class LinkPreview extends React.Component{
           <img style={{width: '150px'}} src={details.image}/>
         </span>
         <span>
-          <div >{details.title}</div>
+          <div className="title">{details.title}</div>
           <div>{details.description}</div>  
         </span>
       </div>
