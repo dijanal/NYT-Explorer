@@ -6,34 +6,46 @@ background: linear-gradient(black,#2C2828) no-repeat center center fixed;
   -o-background-size: cover;
   background-size: cover;
 }*/
-
-
-#section2{
-  display: flex;
-  justify-content: center;
-  text-align: center;
+body {
+    background: radial-gradient(#626D71,#D2C5C5) no-repeat center center fixed;
+    height: auto;
 }
-h1 {
+
+#section1 {
   display: flex;
   justify-content: center;
   text-align: center;
+  background: linear-gradient(#B38867,#DDBC95);
+  color:#474f52;
+}
+
+#section2 {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  background: linear-gradient(#DDBC95,#B38867);
+  color:#474f52;
+  flex-direction: column;
+}
+
+#amount{
+  margin-bottom: 10px;
 }
 
 
 @media screen 
   and (min-device-width: 1200px) 
   and (max-device-width: 1600px) 
-  and (-webkit-min-device-pixel-ratio: 1) { 
+  and (-webkit-min-device-pixel-ratio: 1) {
 
 .page{
   width:25%;
-
+  margin-bottom: 5px;
 }
 
-.results-link:hover{
-background-color: #bfbfbf;
+.page:hover{
+  background-color: #bfbfbf;
 }
-
 
 .results{
   float:left;
@@ -45,57 +57,44 @@ background-color: #bfbfbf;
 .details{
   float:left;
   width:30%;
-}
+  text-align: center;
+  }
 }
 
-@media only screen 
-  and (min-device-width: 768px) 
-  and (max-device-width: 1024px) 
-  and (-webkit-min-device-pixel-ratio: 1) {
 
+@media (min-width: 768px) and (max-width: 1024px) {
 .page{
   width:40%;
-
 }
 
-.results-link:hover{
-  background-color: #bfbfbf
+.page:hover{
+  background-color: #bfbfbf;
 }
-
 
 .results{
   float:left;
   width:70%;
   display: flex;
   flex-wrap: wrap;
-
-
 }
 
 .details{
   float:left;
   margin-bottom: 10px;
   width:30%;
+  }
 }
 
-}
 
-@media only screen 
-  and (min-device-width: 375px) 
-  and (max-device-width: 667px) 
-  and (-webkit-min-device-pixel-ratio: 2) { 
+@media (min-width: 320px) and (max-width: 760px) {
 
 .page{
-  
   width:70%;
-
 }
 
-.results-link:hover{
+.page:hover{
 background-color: #bfbfbf
 }
-
-
 
 .results{
   float:left;
@@ -107,8 +106,5 @@ background-color: #bfbfbf
 .details{
   float:left; 
   width:30%;
-
+  }
 }
-
-}
-

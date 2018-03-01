@@ -17,7 +17,9 @@ class App extends React.Component {
       const doc=theDataToSet.response.docs[i]
       data.push(doc)
     }
-    this.setState({'data': data });  
+    this.setState({'data': data }); 
+    console.log(theDataToSet.response.meta.hits) 
+ 
   }
 
   setDetails(details) {
@@ -25,11 +27,27 @@ class App extends React.Component {
   }
 
   refresh(){
-    var year=document.getElementById('year').value
-    var month=document.getElementById('month').value
-    console.log('Results from:'+year+'/'+ month)
+
+    //set selectors
+
+    var date=document.getElementById('date1').value
+    var date1=date.split('-')
+    var year=date1[0]
+    var month=date1[1]
+    var month1=month.split('')
+    var month2=month1[1]
+    console.log('Results from '+ year + '/' + month2)
+
+
+    //set number of all articles
+
+    var root1=document.getElementById('amount')
+    const array1=<p>{this.state.data.title}</p>
+    var array='Number of articles:  ' + array1
+    root1.innerHTML=array
+
     $.ajax({
-       url: "https://api.nytimes.com/svc/archive/v1/"+year+"/"+month+".json",
+       url: "https://api.nytimes.com/svc/archive/v1/"+year+"/"+month2+".json",
        method:'GET',
        data:{'api-key':"067228c511f04592964fcc8bd15ae934"},
        success: this.setData
@@ -40,7 +58,6 @@ class App extends React.Component {
    const elements = this.state.data;
    const link_details=this.state.details
    console.log(elements);
-    
     return (
       <div>
         <div className='results'>
@@ -56,8 +73,7 @@ class App extends React.Component {
         </div>
           <div className="details">
             <div>{link_details.title}</div>
-            <div>{link_details.description}</div>
-            <div><a href={link_details.url}>{link_details.url}</a></div>
+            <div><a href={link_details.url} target="_blank">{link_details.url}</a></div>
           </div>
       </div>
     );
@@ -74,12 +90,12 @@ class LinkPreview extends React.Component{
     }
     this.setData=this.setData.bind(this)
     this.setDetails=this.setDetails.bind(this)
-      }
+  }
 
   setData(result){
     this.setState({result: result})
-
   }
+
   setDetails(){
     const {title, description, url} = this.state.result;
 
@@ -95,7 +111,7 @@ class LinkPreview extends React.Component{
 
   componentDidMount(){
     $.ajax({
-      url:"http://api.linkpreview.net/?key=123456&q=https://www.google.com",
+      url:"https://api.linkpreview.net/?key=5a8c6323b4866f01b8bf3c88dab0d56d3b36c16fa90dd&q="+this.props.web_url,
       success:this.setData
     })
   }
@@ -107,12 +123,11 @@ class LinkPreview extends React.Component{
       <div className='page'>
       <div className='results-link' onClick={this.setDetails.bind(this)} >
         <span>
-         <a href={this.props.web_url} target='_blank'> <img style={{width: '150px'}} src={details.image}/></a>
+          <img style={{width: '150px'}} src={details.image}/>
         </span>
         <span>
-         <div ><a href={details.url} target='_blank'>{details.title}</a></div>
-          <div>{details.description}</div>
-          
+          <div >{details.title}</div>
+          <div>{details.description}</div>  
         </span>
       </div>
       </div>
