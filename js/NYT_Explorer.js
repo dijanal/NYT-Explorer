@@ -4,7 +4,8 @@ class App extends React.Component {
     super(props)
     this.state={
       data:[],
-      details: {}
+      details: {},
+      hits: {}
     }
     this.setData = this.setData.bind(this);
     this.setDetails = this.setDetails.bind(this);
@@ -13,13 +14,15 @@ class App extends React.Component {
   
   setData(theDataToSet){
     let data=[]
+    let hits1=[]
     for(var i=0;i<20;i++){
       const doc=theDataToSet.response.docs[i]
+      const hits=theDataToSet.response.meta.hits
       data.push(doc)
+      hits1.push(hits)
     }
-    this.setState({'data': data }); 
-    console.log(theDataToSet.response.meta.hits) 
- 
+    console.log("Number of articles for choosen date: "+theDataToSet.response.meta.hits)
+    this.setState({'data': data,'hits':hits1}); 
   }
 
   setDetails(details) {
@@ -36,13 +39,13 @@ class App extends React.Component {
     var month=date1[1]
     var month1=month.split('')
     var month2=month1[1]
-    console.log('Results from '+ year + '/' + month2)
+    console.log('Results from: '+ year + '/' + month2)
 
 
     //set number of all articles
 
     var root1=document.getElementById('amount')
-    const amount1=<p>{this.state.data.title}</p>
+    const amount1="<p>" + this.state.hits1 + "</p>"
     var amount='Number of articles:  ' + amount1
     root1.innerHTML=amount
 
@@ -57,9 +60,9 @@ class App extends React.Component {
  render() {  
    const elements = this.state.data;
    const link_details=this.state.details
-   console.log(elements);
+   console.log(elements)
     return (
-      <div>
+      <div id='all'>
         <div className='results'>
            {
               elements.map(
@@ -67,12 +70,16 @@ class App extends React.Component {
                  key={element._id}
                  handleOnClick={this.setDetails}
                  web_url={element.web_url}
+                 doc={element}
                />
               )
             }
         </div>
           <div className="details">
             <div >{link_details.title}</div>
+            <div>{link_details.pub_date}</div>
+            <div>{link_details.author}</div>
+            <div> {link_details.word_count}</div>
             <div><a href={link_details.url} target="_blank">{link_details.url}</a></div>
           </div>
       </div>
@@ -97,11 +104,17 @@ class LinkPreview extends React.Component{
   }
 
   setDetails(){
-    const {title, description, url} = this.state.result;
-
+    const {title, url} = this.state.result;
+    const word_count = this.props.doc.word_count;
+    const pub_date=this.props.doc.pub_date;
+    pub_date.split('T')
+    let pub_date1=pub_date.slice(0,10)
+    const author=this.props.doc.byline.original
     const details = {
-      title: title,
-      description: description,
+      title:'Title: '+title,
+      pub_date:'Date: '+pub_date1,
+      author:'Author:' +author,
+      word_count:'Word count: '+ word_count,
       url: url
 
     }
@@ -111,14 +124,12 @@ class LinkPreview extends React.Component{
 
   componentDidMount(){
     $.ajax({
-      url:"https://api.linkpreview.net/?key=123456&q=https://www.google.com",
-      success:this.setData
+    url:"http://api.linkpreview.net/?key=123456&q=https://www.google.com",
+    success:this.setData
     })
   }
   render(){
     const details=this.state.result
-    console.log(details)
-
     return (
       <div className='page'>
       <div className='results-link' onClick={this.setDetails.bind(this)} >

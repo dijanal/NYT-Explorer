@@ -4,9 +4,9 @@ body {
   font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
 }
 
-body, html { 
+/*body, html { 
   overflow-x:hidden; 
-}
+}*/
 
 #section1 {
   display: flex;
@@ -57,7 +57,7 @@ body, html {
 .details{
   float:left;
   width:30%;
-  text-align: center;
+  text-align: left;
   }
 }
 
@@ -95,6 +95,7 @@ body, html {
 
 .page{
   width:70%;
+  margin-bottom: 10px;
 }
 
 .page:hover{
@@ -106,10 +107,11 @@ background-color: #bfbfbf
   width:70%;
   display: flex;
   flex-wrap: wrap;
+
 }
 
 .details{
-  float:left; 
+  float:left;
   width:30%;
   }
 }
