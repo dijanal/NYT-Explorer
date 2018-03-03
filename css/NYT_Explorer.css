@@ -1,12 +1,12 @@
 body {
-   font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+  font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
   background-image: url('../img/image2.jpg');
   color:white;
 }
 
-/*body, html { 
+body, html { 
   overflow-x:hidden; 
-}*/
+}
 
 #section1 {
   display: flex;
@@ -41,8 +41,10 @@ body {
   and (-webkit-min-device-pixel-ratio: 1) {
 
 .page{
-  width:25%;
-  margin-bottom: 5px;
+  width:24%;
+  margin-bottom: 10px;
+  margin-right: 3px;
+  border:1px solid white;
 }
 
 .page:hover{
@@ -54,14 +56,13 @@ background-color: #595959;
   width:70%;
   display: flex;
   flex-wrap: wrap;
+  text-align: center;
 }
 
 .details{
   float:left;
-  width:30%;
+  width:28%;
   text-align: left;
-  position: sticky;
-  top: 60px;
   }
 
 .details2{
@@ -72,7 +73,10 @@ background-color: #595959;
 
 
 .page{
-  width:49%;
+  width:45%;
+  margin-bottom: 20px;
+  margin-right: 10px;
+  border:1px solid white;
 }
 
 .page:hover{
@@ -84,14 +88,14 @@ background-color: #595959;
   width:70%;
   display: flex;
   flex-wrap: wrap;
+  text-align: center;
+
 }
 
 .details{
   float:left;
   margin-bottom: 10px;
   width:30%;
-  position: sticky;
-  top: 10px;
   }
 
   .details2{
@@ -100,7 +104,7 @@ background-color: #595959;
 }
 
 #link{
-  color:grey;
+  color:#cccccc;
 }
 
 #link:hover{
@@ -110,8 +114,9 @@ background-color: #595959;
 @media (min-width: 320px) and (max-width: 760px) {
 
 .page{
-  width:100%;
+  width:99%;
   margin-bottom: 10px;
+  border-bottom:1px solid white;
 }
 
 .page:hover{
@@ -123,15 +128,14 @@ background-color: #595959;
   width:100%;
   display: flex;
   flex-wrap: wrap;
-  flex-direction: column
+  flex-direction: column;
 }
 
 .details2{
   color:grey;
 }
+
 .details{
   display:none;
-  float:left;
-  width:30%;
   }
 }

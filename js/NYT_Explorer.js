@@ -14,7 +14,7 @@ class App extends React.Component {
   
   setData(theDataToSet){
     let data=[]
-    for(var i=0;i<6;i++){
+    for(var i=0;i<20;i++){
       const doc=theDataToSet.response.docs[i]
       data.push(doc)
     }
@@ -40,7 +40,7 @@ class App extends React.Component {
     console.log('Results from:' + year + '/' + month2)
 
     $.ajax({
-       url: "https://api.nytimes.com/svc/archive/v1/"+year+"/"+month2+".json",
+      url: "https://api.nytimes.com/svc/archive/v1/"+year+"/"+month2+".json",
        method:'GET',
        data:{'api-key':"067228c511f04592964fcc8bd15ae934"},
        success: this.setData
@@ -53,7 +53,7 @@ class App extends React.Component {
    const amount=this.state.hits
    console.log(elements)
     return (
-      <div >
+      <div>
         <div className='results'>
            {
               elements.map(
@@ -68,19 +68,16 @@ class App extends React.Component {
               )
             }
         </div>
-          <div className="details">
+        <div className="details">
           <div>{link_details.hints}</div>
-            <div >{link_details.title}</div>
-            <div>{link_details.pub_date}</div>
-            <div> {link_details.word_count}</div>
-            <div>{link_details.author}</div>
-            <div>{link_details.snippet}</div>
-            <div><a href={link_details.url} target="_blank" id='link'>{link_details.url}</a></div>
-          </div>
-
-         
-</div>
-
+          <div >{link_details.title}</div>
+          <div>{link_details.pub_date}</div>
+          <div> {link_details.word_count}</div>
+          <div>{link_details.author}</div>
+          <div>{link_details.snippet}</div>
+          <div><a href={link_details.url} target="_blank" id='link'>{link_details.url}</a></div>
+        </div>
+      </div>
     );
   }
 }
@@ -132,6 +129,7 @@ class LinkPreview extends React.Component{
   }
   render(){
     const details=this.state.result
+    const details2=this.props.details
     return (
       <div className='page'>
       <div className='results-link' onClick={this.setDetails.bind(this)} >
@@ -140,14 +138,14 @@ class LinkPreview extends React.Component{
         </span>
         <span>
           <div className="title">{details.title}</div>
-          <div>{details.description}</div>  
-          <div className='details2'>
-          <div>{this.props.details.snippet}</div>
-          <div>{this.props.details.word_count}</div>
-          <div><a href={this.props.web_url} target='blank'>{this.props.details.url}</a></div>
-          </div>
-        </span>
-      </div>
+          <div>{details.description}</div> 
+        </span> 
+        </div>
+        <div className='details2'>
+          <div>{details2.author}</div>
+          <div>{details2.word_count}</div>
+          <div><a href={this.props.web_url} target='blank'>{details2.url}</a></div>
+        </div>
       </div>
     )
   }
