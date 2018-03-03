@@ -67,6 +67,9 @@ class App extends React.Component {
                />
               )
             }
+        <div className='button'>
+          <a  href="#top"> <img className='backToTop' src='../img/images.png'/></a>
+        </div>
         </div>
         <div className="details">
           <div>{link_details.hints}</div>

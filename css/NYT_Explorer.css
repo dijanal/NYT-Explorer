@@ -34,6 +34,20 @@ body, html {
   font-weight: bold;
 }
 
+#link{
+  color:#cccccc;
+}
+
+#link:hover{
+  color: #666666;
+}
+
+.backToTop{
+  height: 20px;
+  width: 20px;
+}
+
+
 
 @media screen 
   and (min-device-width: 1200px) 
@@ -61,16 +75,16 @@ background-color: #595959;
 
 .details{
   float:left;
-  width:28%;
+  width:30%;
   text-align: left;
   }
 
 .details2{
   display:none;
 }
+
 }
 @media (min-width: 768px) and (max-width: 1024px) {
-
 
 .page{
   width:45%;
@@ -98,18 +112,11 @@ background-color: #595959;
   width:30%;
   }
 
-  .details2{
+.details2{
     display:none;
   }
 }
 
-#link{
-  color:#cccccc;
-}
-
-#link:hover{
-  color: #666666;
-}
 
 @media (min-width: 320px) and (max-width: 760px) {
 
