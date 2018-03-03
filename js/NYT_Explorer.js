@@ -14,7 +14,7 @@ class App extends React.Component {
   
   setData(theDataToSet){
     let data=[]
-    for(var i=0;i<20;i++){
+    for(var i=0;i<6;i++){
       const doc=theDataToSet.response.docs[i]
       data.push(doc)
     }
@@ -53,7 +53,7 @@ class App extends React.Component {
    const amount=this.state.hits
    console.log(elements)
     return (
-      <div>
+      <div >
         <div className='results'>
            {
               elements.map(
@@ -63,6 +63,7 @@ class App extends React.Component {
                  web_url={element.web_url}
                  doc={element}
                  hit={amount}
+                 details={link_details}
                />
               )
             }
@@ -71,12 +72,15 @@ class App extends React.Component {
           <div>{link_details.hints}</div>
             <div >{link_details.title}</div>
             <div>{link_details.pub_date}</div>
-            <div>{link_details.author}</div>
             <div> {link_details.word_count}</div>
+            <div>{link_details.author}</div>
             <div>{link_details.snippet}</div>
-            <div><a href={link_details.url} target="_blank">{link_details.url}</a></div>
+            <div><a href={link_details.url} target="_blank" id='link'>{link_details.url}</a></div>
           </div>
-   </div>
+
+         
+</div>
+
     );
   }
 }
@@ -110,8 +114,8 @@ class LinkPreview extends React.Component{
       hints:'Number of all articles: '+ hit1,
       title:'Title: '+ title,
       pub_date:'Date: '+ pub_date1,
-      author:'Author:' + author,
       word_count:'Word count: '+ word_count,
+      author: author,
       snippet:snippet,
       url: url
 
@@ -122,7 +126,7 @@ class LinkPreview extends React.Component{
 
   componentDidMount(){
     $.ajax({
-      url:"http://api.linkpreview.net/?key=123456&q=https://www.google.com",    
+      url:"http://api.linkpreview.net/?key=5a8c6323b4866f01b8bf3c88dab0d56d3b36c16fa90dd&q="+this.props.web_url,
       success:this.setData
     })
   }
@@ -137,6 +141,11 @@ class LinkPreview extends React.Component{
         <span>
           <div className="title">{details.title}</div>
           <div>{details.description}</div>  
+          <div className='details2'>
+          <div>{this.props.details.snippet}</div>
+          <div>{this.props.details.word_count}</div>
+          <div><a href={this.props.web_url} target='blank'>{this.props.details.url}</a></div>
+          </div>
         </span>
       </div>
       </div>
