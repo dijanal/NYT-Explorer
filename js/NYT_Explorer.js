@@ -126,7 +126,7 @@ class LinkPreview extends React.Component{
 
   componentDidMount(){
     $.ajax({
-      url:"http://api.linkpreview.net/?key=5a8c6323b4866f01b8bf3c88dab0d56d3b36c16fa90dd&q="+this.props.web_url,
+      url:"https://api.linkpreview.net/?key=5a8c6323b4866f01b8bf3c88dab0d56d3b36c16fa90dd&q="+this.props.web_url,
       success:this.setData
     })
   }
