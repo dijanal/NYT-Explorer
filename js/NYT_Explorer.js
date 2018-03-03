@@ -159,4 +159,4 @@ app.refresh()
 }
 
 const root = document.getElementById('root');
-var app = ReactDOM.render(<App />, root); 
+var app = ReactDOM.render(<App />, root);
