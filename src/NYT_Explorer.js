@@ -1,3 +1,9 @@
+import React from 'react';
+import ReactDOM from 'react-dom';
+import $ from 'jquery';
+
+
+
 class App extends React.Component {
 
   constructor(props){
@@ -163,3 +169,5 @@ app.refresh()
 
 const root = document.getElementById('root');
 var app = ReactDOM.render(<App />, root);
+
+export default App
