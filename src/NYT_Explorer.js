@@ -1,6 +1,8 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import $ from 'jquery';
+
+import './NYT_Explorer.css';
+
 
 
 
@@ -53,6 +55,8 @@ class App extends React.Component {
     })
   }
 
+
+
  render() {  
    const elements = this.state.data;
    const link_details=this.state.details
@@ -60,6 +64,22 @@ class App extends React.Component {
    console.log(elements)
     return (
       <div>
+        <section id='section1'>
+    <div>
+      <h1 id="top">NYT Explorer</h1>
+      <p>NYT Explorer is single page web app that enables you to explore NY Times archive of articles. </p>
+    </div>
+  </section>
+  <section id='section2'>
+    <div>
+      <p>Choose date:  <input type='month' id='date1' /> 
+      <button type='submit' className='btn btn-primary' onClick={this.refresh} id='button'>Search
+      </button>     
+      </p>
+    </div>
+    <div id='amount'/>
+  </section>
+  <hr/>
         <div className='results'>
            {
               elements.map(
@@ -130,6 +150,7 @@ class LinkPreview extends React.Component{
     this.props.handleOnClick(details)
   }
 
+
   componentDidMount(){
     $.ajax({
       url:"https://api.linkpreview.net/?key=5a8c6323b4866f01b8bf3c88dab0d56d3b36c16fa90dd&q="+this.props.web_url,
@@ -143,7 +164,7 @@ class LinkPreview extends React.Component{
       <div className='page'>
       <div className='results-link' onClick={this.setDetails.bind(this)} >
         <span>
-          <img style={{width: '150px'}} src={details.image}/>
+          <img style={{width: '150px'}} src={details.image} alt='NYT.jpg'/>
         </span>
         <span>
           <div className="title">{details.title}</div>
@@ -162,12 +183,6 @@ class LinkPreview extends React.Component{
 }
 
 
-function search(){
 
-app.refresh()
-}
-
-const root = document.getElementById('root');
-var app = ReactDOM.render(<App />, root);
 
 export default App
