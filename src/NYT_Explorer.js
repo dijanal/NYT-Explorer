@@ -13,7 +13,9 @@ class App extends React.Component {
     this.state={
       data:[],
       details: {},
-      hits:[]
+      hits:[],
+      loading:false,
+      button:false,
     }
     this.setData = this.setData.bind(this);
     this.setDetails = this.setDetails.bind(this);
@@ -28,7 +30,7 @@ class App extends React.Component {
     }
     const hits=theDataToSet.response.meta.hits
     console.log("Number of articles for choosen date: "+theDataToSet.response.meta.hits)
-    this.setState({'data': data,hits:hits}); 
+    this.setState({'data': data,hits:hits,'loading':false,button:true}); 
   }
 
   setDetails(details) {
@@ -46,6 +48,7 @@ class App extends React.Component {
     var month1=month.split('')
     var month2=month1[1]
     console.log('Results from:' + year + '/' + month2)
+    this.setState({'loading':true,'button':false})
 
     $.ajax({
       url: "https://api.nytimes.com/svc/archive/v1/"+year+"/"+month2+".json",
@@ -62,6 +65,8 @@ class App extends React.Component {
    const link_details=this.state.details
    const amount=this.state.hits
    console.log(elements)
+    console.log(this.state.loading)
+    
     return (
       <div>
         <section id='section1'>
@@ -80,6 +85,7 @@ class App extends React.Component {
     <div id='amount'/>
   </section>
   <hr/>
+  {this.state.loading && <LoadingSpinner/>}
         <div className='results'>
            {
               elements.map(
@@ -93,9 +99,8 @@ class App extends React.Component {
                />
               )
             }
-        <div className='button'>
-          <a  href="#top" id='backToTop'><button> &#9650;</button></a>
-        </div>
+        
+        {this.state.button && <Button/>}
         </div>
         <div className="details">
           <div>{link_details.hints}</div>
@@ -117,7 +122,7 @@ class LinkPreview extends React.Component{
   constructor(props){
     super(props)
     this.state={
-      result:[]
+      result:[],
     }
     this.setData=this.setData.bind(this)
     this.setDetails=this.setDetails.bind(this)
@@ -153,9 +158,10 @@ class LinkPreview extends React.Component{
 
   componentDidMount(){
     $.ajax({
-      url:"https://api.linkpreview.net/?key=5a8c6323b4866f01b8bf3c88dab0d56d3b36c16fa90dd&q="+this.props.web_url,
-      success:this.setData
+      url:"https://api.linkpreview.net/?key=5afc1303c4e688a3150dc62fcb95f309ee021e3a2d4f2&q="+this.props.web_url,
+      success:this.setData,
     })
+
   }
   render(){
     const details=this.state.result
@@ -164,7 +170,7 @@ class LinkPreview extends React.Component{
       <div className='page'>
       <div className='results-link' onClick={this.setDetails.bind(this)} >
         <span>
-          <img style={{width: '150px'}} src={details.image} alt='NYT.jpg'/>
+          <img style={{width: '150px',alt:'nyt-image.jpg'}} src={details.image}/>
         </span>
         <span>
           <div className="title">{details.title}</div>
@@ -182,7 +188,17 @@ class LinkPreview extends React.Component{
 
 }
 
+const LoadingSpinner = () => (
+  <div style={{textAlign:'center'}}>
+    <i className="fa fa-spinner fa-spin" /> Loading...
+  </div>
+);
 
+const Button = () => (
+   <div className='button'>
+          <a  href="#top" ><i class="fa fa-arrow-up"></i></a>
+        </div> 
+)
 
 
 export default App
