@@ -196,7 +196,7 @@ const LoadingSpinner = () => (
 
 const Button = () => (
    <div className='button'>
-          <a  href="#top" ><i class="fa fa-arrow-up"></i></a>
+          <a  href="#top" ><i className="fa fa-arrow-up"></i></a>
         </div> 
 )
 
